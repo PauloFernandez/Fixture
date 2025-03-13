@@ -1,0 +1,38 @@
+<?php
+
+return [
+
+    'main_navigation' => 'MENU PRINCIPAL',
+    'blog' => 'Blog',
+    'pages' => 'Páginas',
+    'account_settings' => 'AJUSTES DE LA CUENTA',
+    'profile' => 'Perfil',
+    'change_password' => 'Cambiar Contraseña',
+    'multilevel' => 'Multi Nivel',
+    'level_one' => 'Nivel 1',
+    'level_two' => 'Nivel 2',
+    'level_three' => 'Nivel 3',
+    'labels' => 'ETIQUETAS',
+    'important' => 'Importante',
+    'warning' => 'Advertencia',
+    'information' => 'Información',
+    //titulos
+    'noticia' => 'Noticias',
+    'Torneos' => 'Torneos',
+    'stadium' => 'Cancha',
+    'cards' => 'Tarjetas',
+    'referees' => 'Árbitros',
+    'List_Referees' => 'Lista de árbitros',
+    'Sta_Acc_referees' => 'Est. Cta. árbitros',
+    'teams' => 'Equipos',
+    'all_teams' => 'Todos los Equipos',
+    'Sta_Acc_Matches' => 'Est. Cta. Partidos',
+    'players' => 'Jugadores',
+    'all_players' => 'Todos los Jugadores',
+    'Sta_Acc_Players' => 'Est. Cta. Jugadores',
+    'matches' => 'Partidos',
+    'show_matches' => 'Mostrar Partidos',
+    'enter_results' => 'Ingresar resultados',
+    'load_data_players' => 'Cargar datos jugadores',
+    'exit' => 'Salir',
+];
