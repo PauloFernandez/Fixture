@@ -1,5 +1,6 @@
-<p align="center"><a href="" target="_blank"><img src="/public/img/Torneo_Fútbol-2024.png" width="400" alt="App Fixture"></a></p>
-
+<p align="center">
+  <img src="public/img/Torneo_Fútbol-2024.png" alt="Logo">
+</p>
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
