@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="" target="_blank"><img src="/public/img/Torneo_Fútbol-2024.png" width="400" alt="App Fixture"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -7,60 +7,53 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# App Fixture
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**App Fixture** es una aplicación web diseñada para gestionar torneos de fútbol en diversas categorías. Permite a los administradores crear y gestionar torneos, equipos, jugadores, árbitros, canchas, partidos y reportes de resultados.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funcionalidades
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Creación de Torneos**: Permite la creación de torneos con diversas categorías.
+- **Gestión de Equipos**: Gestión completa de los equipos participantes.
+- **Gestión de Jugadores**: Registro y administración de los jugadores en cada equipo.
+- **Gestión de Árbitros**: Administración de árbitros asignados a cada partido.
+- **Gestión de Canchas**: Asignación y gestión de las canchas disponibles para los partidos.
+- **Creación y Gestión de Partidos**: Agregar y gestionar los partidos programados.
+- **Reportes de Partidos Jugados**: Visualización de resultados y estadísticas de los partidos.
 
-## Learning Laravel
+**Nota**: No se implementó la función de autenticación para que los usuarios puedan explorar libremente todas las funcionalidades sin restricciones.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Gran Torneo de Fútbol
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+En la página principal de la aplicación se destacan los diferentes torneos que se pueden crear, permitiendo que toda la comunidad futbolera participe. Cada torneo tiene su propia página donde se pueden consultar las reglas, que están disponibles para descarga en formato PDF.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+El administrador puede elegir si desea mostrar las reglas del torneo en la página principal, y estas se cargan automáticamente al momento de crear el torneo.
 
-## Laravel Sponsors
+## Usuarios
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Usuario Invitado (Visitante)
 
-### Premium Partners
+El usuario invitado o "Visitante" tiene acceso limitado a la aplicación. Podrá navegar y visualizar la siguiente información:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- Noticias generales
+- Detalles sobre equipos y jugadores (tabla de goleadores y asistencias)
+- Detalles de partidos jugados
+- Filtros para visualizar la información por torneo
 
-## Contributing
+### Usuario Administrador
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+El **Administrador** es el usuario con permisos completos para gestionar todos los aspectos de la aplicación. Algunas de las tareas que puede realizar incluyen:
 
-## Code of Conduct
+- **Crear torneos** y establecer los valores de inscripción
+- **Crear y asignar equipos** a los torneos
+- **Crear y asignar jugadores** a los equipos
+- **Definir las sanciones y valores de las tarjetas**
+- **Cargar partidos y resultados** de los mismos
+- **Gestionar pagos de inscripciones**
+- **Gestionar pagos de sanciones** por tarjetas
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Información de Creación
 
-## Security Vulnerabilities
+Esta aplicación está construida con **Laravel** como framework principal y utiliza **Docker** para la creación de un entorno de desarrollo y despliegue. La arquitectura de la aplicación es monolítica, y utiliza **Blade** como motor de plantillas, integrando **Bootstrap** para la interfaz de usuario. La base de datos utilizada es **MySQL**.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+La aplicación incluye pruebas automatizadas para garantizar la funcionalidad. Además, se utiliza **Git** y **GitHub** para el control de versiones, con **GitHub Actions** para automatizar el flujo de integración continua y despliegue.
