@@ -1,0 +1,59 @@
+name: Deploy Laravel Application
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+    # 1. Checkout del código del repositorio
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # 2. Configurar PHP
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, bcmath, sqlite, gd, curl
+    # Extensiones necesarias en Laravel
+
+    # 3. Instalar dependencias de Composer
+    - name: Install dependencies with Composer
+      run: |
+        curl -sS https://getcomposer.org/installer | php
+        php composer.phar install --no-dev --optimize-autoloader
+
+    # 4. Ejecutar pruebas (si alguna prueba falla, se detendrá el flujo de trabajo)
+    - name: Run tests
+      run: |
+        vendor/bin/phpunit --exit-code=1
+
+    # 5. Configurar .env y ejecutar comandos de Laravel
+    - name: Configure .env and run migrations
+      env:
+        FTP_HOST: ${{ secrets.FTP_HOST }}
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
+      run: |
+        php artisan config:cache
+        php artisan migrate --force  
+        php artisan db:seed --force
+    # --force es necesario para producción
+
+    # 6. Subir al servidor GoogieHost via FTP
+    - name: Upload files to GoogieHost via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.4
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.FTP_DESTINATION }}

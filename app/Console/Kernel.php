@@ -13,10 +13,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // Programar el comando para que se ejecute el primer día de cada mes
-        $schedule->command('migrate:fresh-seed')->everyTenMinutes();
+        $schedule->command('migrate:fresh-seed')->monthlyOn(1, '00:00');
 
-        $schedule->command('app:coyp-images')->everyTenMinutes();
-
+        $schedule->command('app:coyp-images')->monthlyOn(1, '00:45');
     }
 
     /**
