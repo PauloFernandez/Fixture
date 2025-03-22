@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/img/Torneo_Fútbol-2024.png" alt="Logo">
+  <img src="public/img/Torneo_Futbol.png" alt="Logo">
 </p>
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
