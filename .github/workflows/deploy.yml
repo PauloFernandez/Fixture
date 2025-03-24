@@ -26,19 +26,19 @@ jobs:
     # Extensiones necesarias en Laravel
 
     # 3. Instalar dependencias de Composer
-    - name: Install dependencies with Composer
-      run: |
-        curl -sS https://getcomposer.org/installer | php
-        php composer.phar install --no-dev --optimize-autoloader
+   # - name: Install dependencies with Composer
+   #   run: |
+   #     curl -sS https://getcomposer.org/installer | php
+   #     php composer.phar install --no-dev --optimize-autoloader
 
     # 4. Configurar env de Laravel
-    - name: Configure env
-      env:
-        FTP_HOST: ${{ secrets.FTP_HOST }}
-        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
-      run: php artisan config:cache
+   # - name: Configure env
+   #   env:
+   #     FTP_HOST: ${{ secrets.FTP_HOST }}
+   #     FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+   #     FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+   #     FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
+   #   run: php artisan config:cache
 
     # 5. Subir al servidor GoogieHost via FTP
     - name: Upload files to GoogieHost via FTP
