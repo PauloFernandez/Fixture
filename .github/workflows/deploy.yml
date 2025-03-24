@@ -39,10 +39,10 @@ jobs:
     # 5. Configurar .env y ejecutar comandos de Laravel
     - name: Configure .env and run migrations
       env:
-        FTP_HOST: ${{ FTP_HOST }}
-        FTP_USERNAME: ${{ FTP_USERNAME }}
-        FTP_PASSWORD: ${{ FTP_PASSWORD }}
-        FTP_DESTINATION: ${{ FTP_DESTINATION }}
+        FTP_HOST: ${{ secrets.FTP_HOST }}
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
       run: |
         php artisan config:cache
         php artisan migrate --force  
@@ -53,7 +53,7 @@ jobs:
     - name: Upload files to GoogieHost via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.4
       with:
-        server: ${{ FTP_HOST }}
-        username: ${{ FTP_USERNAME }}
-        password: ${{ FTP_PASSWORD }}
-        server-dir: ${{ FTP_DESTINATION }}
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.FTP_DESTINATION }}
