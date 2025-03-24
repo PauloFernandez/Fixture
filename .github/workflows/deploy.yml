@@ -36,22 +36,18 @@ jobs:
       run: |
         vendor/bin/phpunit --exit-code=1
 
-    # 5. Configurar .env y ejecutar comandos de Laravel
-    - name: Configure .env and run migrations
+    # 5. Configurar env de Laravel
+    - name: Configure env
       env:
         FTP_HOST: ${{ secrets.FTP_HOST }}
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
-      run: |
-        php artisan config:cache
-        php artisan migrate --force  
-        php artisan db:seed --force
-    # --force es necesario para producción
+      run: php artisan config:cache
 
     # 6. Subir al servidor GoogieHost via FTP
     - name: Upload files to GoogieHost via FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.3.4
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
