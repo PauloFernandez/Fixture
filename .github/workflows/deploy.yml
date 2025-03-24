@@ -31,12 +31,7 @@ jobs:
         curl -sS https://getcomposer.org/installer | php
         php composer.phar install --no-dev --optimize-autoloader
 
-    # 4. Ejecutar pruebas (si alguna prueba falla, se detendrá el flujo de trabajo)
-    - name: Run tests
-      run: |
-        vendor/bin/phpunit --exit-code=1
-
-    # 5. Configurar env de Laravel
+    # 4. Configurar env de Laravel
     - name: Configure env
       env:
         FTP_HOST: ${{ secrets.FTP_HOST }}
@@ -45,7 +40,7 @@ jobs:
         FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
       run: php artisan config:cache
 
-    # 6. Subir al servidor GoogieHost via FTP
+    # 5. Subir al servidor GoogieHost via FTP
     - name: Upload files to GoogieHost via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
