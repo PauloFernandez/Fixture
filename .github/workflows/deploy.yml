@@ -32,13 +32,18 @@ jobs:
    #     php composer.phar install --no-dev --optimize-autoloader
 
     # 4. Configurar env de Laravel
-   # - name: Configure env
-   #   env:
-   #     FTP_HOST: ${{ secrets.FTP_HOST }}
-   #     FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-   #     FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-   #     FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
-   #   run: php artisan config:cache
+    - name: Configure env
+      env:
+        FTP_HOST: ${{ secrets.FTP_HOST }}
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
+      run: |
+        cp .env.example .env
+        php artisan key:generate
+        php artisan config:cache
+        php artisan migrate --force
+        php artisan db:seed --force
 
     # 5. Subir al servidor GoogieHost via FTP
     - name: Upload files to GoogieHost via FTP
