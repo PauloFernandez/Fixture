@@ -23,39 +23,55 @@ jobs:
       with:
         php-version: '8.2'
         extensions: mbstring, bcmath, sqlite, gd, curl
-    # Extensiones necesarias en Laravel
 
     # 3. Instalar dependencias de Composer
-   # - name: Install dependencies with Composer
-   #   run: |
-   #     curl -sS https://getcomposer.org/installer | php
-   #     php composer.phar install --no-dev --optimize-autoloader
+    - name: Install dependencies with Composer
+      run: |
+        curl -sS https://getcomposer.org/installer | php
+        php composer.phar install --no-dev --optimize-autoloader
 
-    # 4. Configurar env de Laravel
-   # - name: Configure env
-   #   env:
-   #     FTP_HOST: ${{ secrets.FTP_HOST }}
-   #     FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-   #     FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-   #     FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
-   #   run: |
-   #     cp .env.example .env
-    #    php artisan key:generate
-   #     php artisan config:cache
-   #     php artisan migrate --force
-   #     php artisan db:seed --force
-
-    # 5. Subir al servidor GoogieHost via FTP
-    - name: Upload files to GoogieHost via FTP
+    # 4. Subir archivos al servidor GoogieHost via FTP (Eliminar archivos antiguos)
+    - name: Upload files to GoogieHost via FTP - Delete old files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.FTP_DESTINATION }}
+        delete: true  # Elimina los archivos antiguos del servidor
+
+    # 5. Subir archivos al servidor GoogieHost (Sube los archivos nuevos)
+    - name: Upload files to GoogieHost via FTP - Upload new files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.FTP_DESTINATION }}
+        exclude: .env  # Excluye el archivo .env
+
+    # 6. Subir el archivo .env (ya que no puedes subirlo con FTP, lo haremos manualmente desde el repositorio)
+    - name: Upload .env file
+      uses: actions/upload-artifact@v2
+      with:
+        name: .env
+        path: .env
+
+    # 7. Crear el archivo .env en el servidor manualmente
+    # El siguiente paso es más un recordatorio de que debes hacer esto manualmente.
+    # Puedes descargar el archivo .env desde el artefacto y subirlo manualmente desde tu panel de GoogieHost o desde el FTP.
+
+    # 8. Establecer permisos para el directorio storage y bootstrap/cache
+    - name: Set permissions for storage and bootstrap/cache directories
       run: |
-        cp .env.example .env
+        curl -sS https://getcomposer.org/installer | php
+        php artisan storage:link
+        chmod -R 775 storage
+        chmod -R 775 bootstrap/cache
+
+    # 9. Ejecutar comandos de Laravel post-deployment
+    - name: Run Laravel commands post-deployment
+      run: |
+        curl -sS https://getcomposer.org/installer | php
         php artisan key:generate
-        php artisan config:cache
         php artisan migrate --force
-        php artisan db:seed --force
