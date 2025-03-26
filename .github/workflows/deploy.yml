@@ -42,13 +42,13 @@ jobs:
         php artisan config:cache
 
     # Subir al servidor GoogieHost via FTP
-   # - name: Upload files to GoogieHost via FTP
-   #   uses: SamKirkland/FTP-Deploy-Action@4.0.0
-   #   with:
-    #     server: ${{ secrets.FTP_HOST }}
-     #    username: ${{ secrets.FTP_USERNAME }}
-    #     password: ${{ secrets.FTP_PASSWORD }}
-    #     server-dir: ${{ secrets.FTP_DESTINATION }}
+    - name: Upload files to GoogieHost via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+         server: ${{ secrets.FTP_HOST }}
+         username: ${{ secrets.FTP_USERNAME }}
+         password: ${{ secrets.FTP_PASSWORD }}
+         server-dir: ${{ secrets.FTP_DESTINATION }}
 
     - name: Set permissions for storage and bootstrap/cache directories
       run: |
@@ -61,5 +61,6 @@ jobs:
     - name: Run Laravel commands post-deployment
       run: |
         curl -sS https://getcomposer.org/installer | php
-        php artisan key:generate
         php artisan migrate --force
+        php artisan db:seed --force
+        
