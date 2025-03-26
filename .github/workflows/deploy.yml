@@ -55,7 +55,7 @@ jobs:
         curl -sS https://getcomposer.org/installer | php
         php artisan storage:link
         chmod -R 775 bootstrap/cache
-        chmod -R 775 public_html/storage
+        chmod -R 775 public/storage
 
     # Ejecutar comandos de Laravel post-deployment
     - name: Run Laravel commands post-deployment
