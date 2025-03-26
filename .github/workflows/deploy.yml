@@ -13,26 +13,31 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    # Checkout del código del repositorio
-    - name: Checkout code
+    
+    - name: Checkout del código del repositorio
       uses: actions/checkout@v2
 
-    # Configurar PHP
-    - name: Set up PHP
+    - name: Configurar PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.2'
         extensions: mbstring, bcmath, sqlite, gd, curl
     # Extensiones necesarias en Laravel
 
-    # Instalar dependencias de Composer
-    - name: Install dependencies with Composer
+    - name: Copy .env
+      run: |
+        cp .env.example .env
+ 
+    - name: Instalar dependencias de Composer
       run: |
         curl -sS https://getcomposer.org/installer | php
         php composer.phar install --no-dev --optimize-autoloader
 
-    # Configurar env de Laravel
-    - name: Configure env
+    - name: Permisos para storage y bootstrap/cache
+      run: |
+        chmod 775 -R storage bootstrap/cache
+
+    - name: Configurar env de Laravel
       env:
         FTP_HOST: ${{ secrets.FTP_HOST }}
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -41,26 +46,16 @@ jobs:
       run: |
         php artisan config:cache
 
-    # Subir al servidor GoogieHost via FTP
-    - name: Upload files to GoogieHost via FTP
+    - name: Subir al servidor GoogieHost via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
          server: ${{ secrets.FTP_HOST }}
          username: ${{ secrets.FTP_USERNAME }}
          password: ${{ secrets.FTP_PASSWORD }}
          server-dir: ${{ secrets.FTP_DESTINATION }}
-
-    - name: Set permissions for storage and bootstrap/cache directories
+ 
+    - name: Ejecutar comandos de Laravel post-deployment
       run: |
-        curl -sS https://getcomposer.org/installer | php
-        php artisan storage:link
-        chmod -R 775 bootstrap/cache
-        chmod -R 775 public/storage
-
-    # Ejecutar comandos de Laravel post-deployment
-    - name: Run Laravel commands post-deployment
-      run: |
-        curl -sS https://getcomposer.org/installer | php
         php artisan migrate --force
         php artisan db:seed --force
         
