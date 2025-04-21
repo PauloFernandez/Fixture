@@ -57,4 +57,4 @@ El **Administrador** es el usuario con permisos completos para gestionar todos l
 
 Esta aplicación está construida con **Laravel** como framework principal y utiliza **Docker** para la creación de un entorno de desarrollo y despliegue. La arquitectura de la aplicación es monolítica, y utiliza **Blade** como motor de plantillas, integrando **Bootstrap** para la interfaz de usuario. La base de datos utilizada es **MySQL**.
 
-La aplicación incluye pruebas automatizadas para garantizar la funcionalidad. Además, se utiliza **Git** y **GitHub** para el control de versiones, con **GitHub Actions** para automatizar el flujo de integración continua y despliegue.
+La aplicación incluye pruebas automatizadas para garantizar la funcionalidad. Además, se utiliza **Git** y **GitHub** para el control de versiones.
