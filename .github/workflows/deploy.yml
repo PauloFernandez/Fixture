@@ -48,8 +48,6 @@ jobs:
     #     php artisan config:cache
     #     php artisan route:cache
     #     php artisan view:cache
-    # Nota: Si tienes rutas con Closures, route:cache fallará.
-    # Nota: A veces config:cache puede dar problemas en shared hosting si las rutas no coinciden exactamente. Prueba sin esto primero.
 
     - name: Deploy to FTP server
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
