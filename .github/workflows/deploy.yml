@@ -19,24 +19,12 @@ jobs:
         extensions: mbstring, xml, curl, zip, gd, iconv, pdo, pdo_mysql
         tools: composer
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-
     - name: Install Composer Dependencies
       run: composer install --prefer-dist --no-progress --no-dev --optimize-autoloader
       # --prefer-dist: Descarga zips en lugar de clonar repos (más rápido)
       # --no-progress: Menos output en logs
       # --no-dev: No instala paquetes de desarrollo (importante para producción)
       # --optimize-autoloader: Optimiza el autoloader de Composer
-
-    - name: Install NPM Dependencies
-      run: npm install
-
-    - name: Build Assets (Vite/Mix)
-      run: npm run build
         
     - name: Generate .env file for production
       run: |
