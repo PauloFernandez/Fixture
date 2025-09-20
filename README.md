@@ -59,4 +59,4 @@ Esta aplicación está construida con **Laravel** como framework principal y uti
 
 La aplicación incluye pruebas automatizadas para garantizar la funcionalidad. Además, se utiliza **Git** y **GitHub** para el control de versiones.
 
-**Muestra App Web: Fixture**:(https://fixture.kesug.com/)
+**Muestra App Web:**:[Fixture](https://fixture.kesug.com/)
