@@ -53,6 +53,8 @@ El **Administrador** es el usuario con permisos completos para gestionar todos l
 - **Gestionar pagos de inscripciones**
 - **Gestionar pagos de sanciones** por tarjetas
 
+- **Muestra App Web: Fixture**:(https://fixture.kesug.com/)
+
 ## Información de Creación
 
 Esta aplicación está construida con **Laravel** como framework principal y utiliza **Docker** para la creación de un entorno de desarrollo y despliegue. La arquitectura de la aplicación es monolítica, y utiliza **Blade** como motor de plantillas, integrando **Bootstrap** para la interfaz de usuario. La base de datos utilizada es **MySQL**.
